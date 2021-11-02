@@ -1,16 +1,14 @@
 <?php
-
 $print = function($class){
-    if(file_exist('classes/'.$class.'.php')){
+    if(file_exists('classes/'.$class.'.php')){
         include_once('classes/'.$class.'.php');
     }
 };
 
-spl_autoload_register($print)
+spl_autoload_register($print);
 
 define('HOST','localhost');
-define('DATABASE','form_cadastro');
+define('DATABASE','acervo');
 define('USER','root');
 define('PASSWORD','');
-
 ?>

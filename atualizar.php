@@ -13,10 +13,25 @@
     <link href="form.css" rel="stylesheet">
 </head>
 <body>
+
+<?php
+    if(isset($_POST['update'])){
+        $id = $_POST['id'];
+        $editora = $_POST['editora'];
+        $titulo = $_POST['titulo'];
+        $autor = $_POST['autor'];
+        $ano = $_POST['ano'];
+        $preco = $_POST['preco'];
+        $quantidade = $_POST['quantidade'];
+        $tipo = $_POST['tipo'];
+
+        Update::update($id, $editora,$titulo,$autor,$ano,$preco,$quantidade, $tipo);
+    }
+?>
     <div class="form_cd">
-        <h2>Cadastro de Livro</h2>
-        <form method="POST" action="requests.php">
-            <select name="editora" id="editora">
+        <h2>Atualizar</h2>
+        <form method="POST" action="acervo.php">
+        <select name="editora" id="editora">
                 <?php
                     foreach($db->query('SELECT * FROM editora' ) as $item) {
                         echo '<div><option value="'.$item["id"].'">'. $item["nome"] .'</option></div>';
@@ -29,12 +44,8 @@
             <div><input type="text" name="preco" placeholder="Preço"></div>
             <div><input type="text" name="quantidade" placeholder="Quantidade"></div>
             <div><input type="text" name="tipo" placeholder="Tipo"></div>
-            <div><input type="submit" name="submit" value="Cadastrar"></div>
-            <div><input type="hidden" name="form" value="f_form"></div>
-        </form>
+            <div><input type="submit" name="update" value="Atualizar"></div>
 
-        <form action="acervo.php" method="get">
-            <input type="submit" value="Lista Completa" name="filter">
         </form>
     </div>
 </body>
